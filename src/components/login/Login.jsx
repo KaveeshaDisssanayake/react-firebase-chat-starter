@@ -16,12 +16,25 @@ const Login = () =>{
             url:URL.createObjectURL(e.target.files[0])
         })
     }
-}
+};
+
+const handleRegister = e => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+
+    const {username,email,password} = Object.fromEntries(formData);
+
+    console.log(username)
+    
+};
+
+
 
 const handleLogin = e => {
     e.preventDefault()
-    toast.success("Hello")
-}
+  
+};
+
 
     return(
         <div className="login">
@@ -37,7 +50,7 @@ const handleLogin = e => {
             <div className="separator"></div>
             <div className="item">
             <h2>Create an Account</h2>
-                <form >
+                <form onSubmit={handleRegister}>
                     <label htmlFor='file'>
                         <img src={avatar.url || "./avatar.png"}  />
                         Upload an Image
