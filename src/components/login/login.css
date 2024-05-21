@@ -69,6 +69,12 @@
                 font-weight: 500;
                 font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
                 "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+
+                & :disabled{
+                    cursor: not-allowed;
+                    background-color: #1f8ff19c;
+
+                }
             } 
         }
 
