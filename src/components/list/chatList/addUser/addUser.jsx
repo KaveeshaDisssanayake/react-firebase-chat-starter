@@ -1,4 +1,4 @@
-import { collection, getDoc, getDocs, query, where } from 'firebase/firestore';
+import { collection, doc, getDoc, getDocs, query, serverTimestamp, setDoc, where } from 'firebase/firestore';
 import './addUser.css';
 import {db} from "../../../../lib/firebase";
 import { useState } from 'react';
@@ -27,6 +27,31 @@ const AddUser = () =>{
             console.log(err)
             
         }
+    };
+
+    const handleAdd = async () => {
+
+        const chatRef = collection(db, "chats");
+        const userChatRef = collection(db, "userchats");
+
+
+        try {
+
+            const newChatRef = doc(chatRef)
+
+
+
+             await setDoc(newChatRef,{
+                createdAt : serverTimestamp(),
+                messages : []
+            });
+
+            console.log(newChatRef.id)
+            
+        } catch (err) {
+            console.log(err);
+            
+        }
     }
     return(
         <div className="addUser">
@@ -39,7 +64,7 @@ const AddUser = () =>{
                     <img src={ user.avatar || "./avatar.png"} alt="" />
                     <span>{user.username}</span>
                 </div>
-                <button>Add User</button>
+                <button onClick={handleAdd}>Add User</button>
             </div>}
             
            
